@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "marketplace-fronetend": {
+    "marketplace-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/marketplace-fronetend",
+            "outputPath": "dist/marketplace-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -48,7 +48,29 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -59,16 +81,22 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "marketplace-fronetend:build:production"
+              "browserTarget": "marketplace-frontend:build:production"
+            },
+            "staging": {
+              "browserTarget": "marketplace-frontend:build:staging"
+            },
+            "test": {
+              "browserTarget": "marketplace-frontend:build:test"
             },
             "development": {
-              "browserTarget": "marketplace-fronetend:build:development"
+              "browserTarget": "marketplace-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "marketplace-fronetend:build"
+            "browserTarget": "marketplace-frontend:build"
           }
         },
         "test": {
