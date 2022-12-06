@@ -6,7 +6,20 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "add:core-guard": "ng g g --flat --skip-tests core/guards/%npm_config_name%",
+    "add:core-interceptor": "ng g interceptor --flat --skip-tests core/interceptors/%npm_config_name%",
+    "add:core-component": "ng g c --module=App --skip-selector --skip-tests core/components/%npm_config_name%",
+    "add:core-service": "ng g s --skip-tests --flat core/services/%npm_config_name%",
+    "add:core-enum": "ng g e --type=enum core/enums/%npm_config_name%",
+    "add:core-model": "ng g i --type=model --prefix=I core/models/%npm_config_name%",
+    "add:feature": "ng g m --routing -m=App features/%npm_config_name% && ng g c --skip-selector --skip-tests --module=%npm_config_name% features/%npm_config_name%/pages/page-%npm_config_name%",
+    "add:feature-component": "ng g c --module=%npm_config_feature% --skip-selector --skip-tests features/%npm_config_feature%/components/%npm_config_name%",
+    "add:feature-page": "ng g c --module=%npm_config_feature% --skip-selector --skip-tests features/%npm_config_feature%/pages/page-%npm_config_name%",
+    "add:feature-service": "ng g s --skip-tests --flat features/%npm_config_feature%/services/%npm_config_name%",
+    "add:feature-enum": "ng g e --type=enum features/%npm_config_feature%/enums/%npm_config_name%",
+    "add:feature-model": "ng g i --type=model --prefix=I features/%npm_config_feature%/models/%npm_config_name%",
+    "add:shared-component": "ng g c --module=App --skip-tests --prefix=shared shared/components/%npm_config_name%"
   },
   "private": true,
   "dependencies": {
